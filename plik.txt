@@ -1,0 +1,35 @@
+main.cpp :
+#include "funkcja.h"
+using namespace std;
+int main()
+{ zmienna();
+
+}
+
+funkcja.cpp
+#include <iostream>
+using namespace std;
+void zmienna()
+{ cout << "Adrian Zakrzewski" << endl; }
+
+funkcja.h
+void zmienna(); 
+
+bash.sh
+#!/bin/bash
+g++ main.cpp funkcja.cpp -o program
+if [ -e program ]; then
+./program;
+fi
+
+Makefile:
+program: funkcja.o main.o
+    g++ funkcja.o main.o -o program
+
+funkcja.o: funkcja.h funkcja.cpp
+    g++ -c funkcja.cpp -o funkcja.o
+
+main.o: funkcja.h main.cpp
+    g++ -c main.cpp -o main.o
+.PHONY: clean
+
